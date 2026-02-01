@@ -34,7 +34,7 @@
     img {
       width: 100%;
       border-radius: 12px;
-      margin: 10px 0;
+      margin: 12px 0;
       display: none;
     }
 
@@ -63,6 +63,7 @@
       font-size: 18px;
       display: none;
       font-weight: bold;
+      color: #222;
     }
 
     /* Hearts */
@@ -98,11 +99,6 @@
 
 <body>
 
-  <!-- Music -->
-  <audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examp" type="audio/mp3">
-  </audio>
-
   <div class="card">
 
     <h1>Hey Diya ❤️</h1>
@@ -112,9 +108,8 @@
       everything leads to you 😄💖
     </p>
 
-    <!-- Your Photos -->
+    <!-- Single Photo -->
     <img id="pic1" src="photo1.jpg">
-    <img id="pic2" src="photo2.jpg">
 
     <p><strong>Will you be my Valentine?</strong></p>
 
@@ -122,9 +117,9 @@
     <button id="noBtn">No 🙈</button>
 
     <div id="msg">
-      💕 She Said YES!!! 💕<br>
-      Diya, you are my favourite person ❤️<br>
-      Can’t wait to create memories with you 😘
+      💕 SHE SAID YES!!! 💕<br>
+      Diya, you make my world brighter ❤️<br>
+      Can’t wait to make memories with you 😘
     </div>
 
   </div>
@@ -133,25 +128,24 @@
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const msg = document.getElementById("msg");
-    const music = document.getElementById("bgMusic");
-
     const pic1 = document.getElementById("pic1");
-    const pic2 = document.getElementById("pic2");
 
-    // No button runs
+    // No button runs away
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * 200 - 100;
       const y = Math.random() * 200 - 100;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    // Hearts
+    // Hearts animation
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.innerHTML = "❤️";
+
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = (15 + Math.random() * 25) + "px";
+
       document.body.appendChild(heart);
 
       setTimeout(() => heart.remove(), 6000);
@@ -163,6 +157,7 @@
     function firework() {
       const f = document.createElement("div");
       f.className = "firework";
+
       f.style.left = Math.random() * 100 + "vw";
       f.style.top = Math.random() * 60 + "vh";
       f.style.background = `hsl(${Math.random()*360},100%,60%)`;
@@ -177,21 +172,23 @@
 
       msg.style.display = "block";
       pic1.style.display = "block";
-      pic2.style.display = "block";
 
-      music.play();
-
+      // Fireworks
       for (let i = 0; i < 20; i++) {
         setTimeout(firework, i * 150);
       }
+
+      // Open Gehra Hoya at 3:52 (YouTube)
+      window.open(
+        "https://www.youtube.com/watch?v=5Eqb_-j3FDA&t=232s",
+        "_blank"
+      );
 
       // Email trigger
       window.location.href =
         "mailto:kunalmathur924@gmail.com?subject=She%20Said%20Yes!%20❤️&body=Diya%20clicked%20YES%20on%20your%20Valentine%20page!%20😎💖";
     });
-
   </script>
 
 </body>
 </html>
-
