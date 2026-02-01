@@ -24,7 +24,7 @@
       max-width: 360px;
       width: 90%;
       text-align: center;
-      z-index: 2;
+      z-index: 3;
     }
 
     h1 {
@@ -73,11 +73,30 @@
       font-size: 20px;
       animation: floatUp 6s linear infinite;
       user-select: none;
+      z-index: 1;
+    }
+
+    /* Words */
+    .word {
+      position: absolute;
+      color: #ff3b6f;
+      font-size: 16px;
+      font-weight: bold;
+      animation: floatUp 7s linear infinite;
+      user-select: none;
+      z-index: 1;
+      opacity: 0.9;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100vh); opacity: 0; }
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
     }
 
     /* Fireworks */
@@ -88,6 +107,7 @@
       background: gold;
       border-radius: 50%;
       animation: boom 1s ease-out forwards;
+      z-index: 2;
     }
 
     @keyframes boom {
@@ -108,7 +128,6 @@
       everything leads to you 😄💖
     </p>
 
-    <!-- Single Photo -->
     <img id="pic1" src="photo1.jpg">
 
     <p><strong>Will you be my Valentine?</strong></p>
@@ -118,8 +137,8 @@
 
     <div id="msg">
       💕 SHE SAID YES!!! 💕<br>
-      Diya, you make my world brighter ❤️<br>
-      Can’t wait to make memories with you 😘
+      You are my favourite person ❤️<br>
+      Always 😘
     </div>
 
   </div>
@@ -130,14 +149,26 @@
     const msg = document.getElementById("msg");
     const pic1 = document.getElementById("pic1");
 
-    // No button runs away
+    // Your special words
+    const words = [
+      "Hmmm",
+      "Awieeeee",
+      "Imy",
+      "Chup",
+      "22nd September",
+      "Gliterbomb",
+      "Nhi nhi",
+      "Koini"
+    ];
+
+    // No button runs
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * 200 - 100;
       const y = Math.random() * 200 - 100;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
 
-    // Hearts animation
+    // Hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -151,7 +182,26 @@
       setTimeout(() => heart.remove(), 6000);
     }
 
+    // Floating words
+    function createWord() {
+      const word = document.createElement("div");
+      word.className = "word";
+
+      const randomWord =
+        words[Math.floor(Math.random() * words.length)];
+
+      word.innerText = randomWord;
+
+      word.style.left = Math.random() * 100 + "vw";
+      word.style.fontSize = (14 + Math.random() * 10) + "px";
+
+      document.body.appendChild(word);
+
+      setTimeout(() => word.remove(), 7000);
+    }
+
     setInterval(createHeart, 500);
+    setInterval(createWord, 1200);
 
     // Fireworks
     function firework() {
@@ -160,7 +210,8 @@
 
       f.style.left = Math.random() * 100 + "vw";
       f.style.top = Math.random() * 60 + "vh";
-      f.style.background = `hsl(${Math.random()*360},100%,60%)`;
+      f.style.background =
+        `hsl(${Math.random()*360},100%,60%)`;
 
       document.body.appendChild(f);
 
@@ -173,16 +224,9 @@
       msg.style.display = "block";
       pic1.style.display = "block";
 
-      // Fireworks
       for (let i = 0; i < 20; i++) {
         setTimeout(firework, i * 150);
       }
-
-      // Open Gehra Hoya at 3:52 (YouTube)
-      window.open(
-        "https://www.youtube.com/watch?v=5Eqb_-j3FDA&t=232s",
-        "_blank"
-      );
 
       // Email trigger
       window.location.href =
